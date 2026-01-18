@@ -10,8 +10,10 @@ const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/
 // ENHANCEMENT 1: PARTICLES.JS INITIALIZATION
 // ============================================
 
-if (typeof particlesJS !== 'undefined' && !isMobile) {
-    const particleCount = isMobile ? 25 : 50;
+// Wait for DOM and deferred scripts to load
+function initEnhancements() {
+    if (typeof particlesJS !== 'undefined' && !isMobile) {
+        const particleCount = isMobile ? 25 : 50;
     
     particlesJS('particles-js', {
         particles: {
@@ -109,27 +111,27 @@ if (document.readyState === 'loading') {
 // ENHANCEMENT 3: 3D TILT EFFECT ON VIDEO CARDS
 // ============================================
 
-if (typeof VanillaTilt !== 'undefined' && !isMobile) {
-    const videoCards = document.querySelectorAll('.video-card');
-    if (videoCards.length > 0) {
-        VanillaTilt.init(videoCards, {
-            max: 15,
-            speed: 400,
-            glare: true,
-            'max-glare': 0.3,
-            scale: 1.05,
-            perspective: 1000,
-            gyroscope: false
-        });
+    if (typeof VanillaTilt !== 'undefined' && !isMobile) {
+        const videoCards = document.querySelectorAll('.video-card');
+        if (videoCards.length > 0) {
+            VanillaTilt.init(videoCards, {
+                max: 15,
+                speed: 400,
+                glare: true,
+                'max-glare': 0.3,
+                scale: 1.05,
+                perspective: 1000,
+                gyroscope: false
+            });
+        }
     }
-}
+    
+    // ============================================
+    // ENHANCEMENT 4: MAGNETIC CARD EFFECT
+    // ============================================
 
-// ============================================
-// ENHANCEMENT 4: MAGNETIC CARD EFFECT
-// ============================================
-
-if (!isMobile) {
-    document.querySelectorAll('.video-card').forEach(card => {
+    if (!isMobile) {
+        document.querySelectorAll('.video-card').forEach(card => {
         const videoInfo = card.querySelector('.video-info');
         if (!videoInfo) return;
         
@@ -154,17 +156,17 @@ if (!isMobile) {
                 ease: 'power2.out'
             });
         });
-    });
-}
-
-// ============================================
-// ENHANCEMENT 5: ANIMATED BORDER DRAW
-// ============================================
-
-function addCardBorders() {
-    const videoCards = document.querySelectorAll('.video-card');
+        });
+    }
     
-    videoCards.forEach(card => {
+    // ============================================
+    // ENHANCEMENT 5: ANIMATED BORDER DRAW
+    // ============================================
+
+    function addCardBorders() {
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        videoCards.forEach(card => {
         // Check if border already exists
         if (card.querySelector('.card-border')) return;
         
@@ -208,15 +210,16 @@ function addCardBorders() {
     });
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addCardBorders);
-} else {
-    addCardBorders();
-}
-
-// ============================================
-// ENHANCEMENT 6: TEXT SCRAMBLE EFFECT
-// ============================================
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', addCardBorders);
+        } else {
+            addCardBorders();
+        }
+    }
+    
+    // ============================================
+    // ENHANCEMENT 6: TEXT SCRAMBLE EFFECT
+    // ============================================
 
 class TextScramble {
     constructor(el) {
@@ -281,9 +284,9 @@ class TextScramble {
     }
 }
 
-// Apply text scramble to section titles
-if (typeof ScrollTrigger !== 'undefined') {
-    document.querySelectorAll('.section-title').forEach(title => {
+    // Apply text scramble to section titles
+    if (typeof ScrollTrigger !== 'undefined') {
+        document.querySelectorAll('.section-title').forEach(title => {
         const fx = new TextScramble(title);
         const originalText = title.textContent;
         
@@ -295,15 +298,15 @@ if (typeof ScrollTrigger !== 'undefined') {
                 fx.setText(originalText);
             }
         });
-    });
-}
+        });
+    }
+    
+    // ============================================
+    // ENHANCEMENT 7: STAGGERED ENTRY ANIMATIONS
+    // ============================================
 
-// ============================================
-// ENHANCEMENT 7: STAGGERED ENTRY ANIMATIONS
-// ============================================
-
-if (typeof ScrollTrigger !== 'undefined') {
-    gsap.utils.toArray('.video-card').forEach((card, index) => {
+    if (typeof ScrollTrigger !== 'undefined') {
+        gsap.utils.toArray('.video-card').forEach((card, index) => {
         const direction = index % 3 === 0 ? -100 : index % 3 === 1 ? 100 : 0;
         const yDirection = index % 3 === 2 ? 100 : 0;
         
@@ -319,18 +322,18 @@ if (typeof ScrollTrigger !== 'undefined') {
                 toggleActions: 'play none none reverse'
             }
         });
-    });
-}
-
-// ============================================
-// ENHANCEMENT 8: SECTION BACKGROUND COLOR TRANSITIONS
-// ============================================
-
-if (typeof ScrollTrigger !== 'undefined') {
-    const sections = gsap.utils.toArray('section');
-    const colors = ['#0a0a0a', '#0f0a1a', '#1a0a2e', '#0a0a0a'];
+        });
+    }
     
-    sections.forEach((section, index) => {
+    // ============================================
+    // ENHANCEMENT 8: SECTION BACKGROUND COLOR TRANSITIONS
+    // ============================================
+
+    if (typeof ScrollTrigger !== 'undefined') {
+        const sections = gsap.utils.toArray('section');
+        const colors = ['#0a0a0a', '#0f0a1a', '#1a0a2e', '#0a0a0a'];
+        
+        sections.forEach((section, index) => {
         ScrollTrigger.create({
             trigger: section,
             start: 'top center',
@@ -350,12 +353,12 @@ if (typeof ScrollTrigger !== 'undefined') {
                 });
             }
         });
-    });
-}
-
-// ============================================
-// ENHANCEMENT 9: HORIZONTAL SCROLL FOR LOOPS (OPTIONAL)
-// ============================================
+        });
+    }
+    
+    // ============================================
+    // ENHANCEMENT 9: HORIZONTAL SCROLL FOR LOOPS (OPTIONAL)
+    // ============================================
 
 // Uncomment to enable horizontal scroll for loops section
 /*
@@ -382,8 +385,8 @@ if (typeof ScrollTrigger !== 'undefined') {
 // PERFORMANCE OPTIMIZATIONS
 // ============================================
 
-// Disable heavy features on mobile
-if (isMobile) {
+    // Disable heavy features on mobile
+    if (isMobile) {
     // Disable particles
     const particlesContainer = document.getElementById('particles-js');
     if (particlesContainer) {
@@ -404,16 +407,41 @@ if (isMobile) {
     });
 }
 
-// Reduce motion for users who prefer it
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (prefersReducedMotion.matches) {
-    // Disable animations
-    gsap.globalTimeline.timeScale(0);
-    ScrollTrigger.getAll().forEach(trigger => trigger.disable());
-    
-    // Hide particles
-    const particlesContainer = document.getElementById('particles-js');
-    if (particlesContainer) {
-        particlesContainer.style.display = 'none';
+    // Reduce motion for users who prefer it
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReducedMotion.matches) {
+        // Disable animations
+        if (typeof gsap !== 'undefined') {
+            gsap.globalTimeline.timeScale(0);
+        }
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.getAll().forEach(trigger => trigger.disable());
+        }
+        
+        // Hide particles
+        const particlesContainer = document.getElementById('particles-js');
+        if (particlesContainer) {
+            particlesContainer.style.display = 'none';
+        }
     }
+
+
+// Initialize when DOM and scripts are ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Wait a bit for deferred scripts to load
+        setTimeout(initEnhancements, 100);
+    });
+} else {
+    setTimeout(initEnhancements, 100);
+}
+
+// Initialize when DOM and scripts are ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Wait a bit for deferred scripts to load
+        setTimeout(initEnhancements, 100);
+    });
+} else {
+    setTimeout(initEnhancements, 100);
 }
