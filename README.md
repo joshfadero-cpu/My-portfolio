@@ -1,6 +1,6 @@
 # Josh Fadero — Motion Designer Portfolio
 
-A premium, interactive portfolio website showcasing motion design work with advanced scroll animations, custom interactions, and a distinctive "wow factor" that stands out to recruiters and potential clients.
+A premium, interactive portfolio website showcasing motion design work with a distinct "Midnight Motion" aesthetic. Features advanced scroll animations, custom interactions, and a cinematic "Pure Black + Glass" design that stands out to recruiters and potential clients.
 
 **Live Site:** [View Portfolio](https://joshfadero-cpu.github.io/portfolio-site) (when deployed)
 
@@ -8,36 +8,32 @@ A premium, interactive portfolio website showcasing motion design work with adva
 
 ## Features
 
-### Visual Design
-- **Dark Theme** with purple accent colors
-- **Fluid Typography** that scales beautifully across devices
-- **Atmospheric Backgrounds** with animated gradient mesh and noise texture
-- **Premium Aesthetics** designed to impress
+### 🎨 Visual Design ("Midnight Motion")
 
-### Interactive Elements
+- **Pure Black Theme** (`#000000`) for deep contrast
+- **Electric Blue & Hot Pink** vibrants accents
+- **Glassmorphism** with frosted glass cards and buttons
+- **Cinematic Film Grain** texture overlay
+- **Floating SVG Shapes** representing motion design primitives
+
+### ✨ Interactive Elements
+
+- **Lottie Animations** adding personality to Hero and Contact sections
 - **Custom Cursor** with trail effect and context-aware states
-- **3D Tilt Cards** that respond to mouse movement
-- **Magnetic Effects** on video cards
-- **Animated Border Draws** on card hover
-- **Mouse-Following Glow** for immersive experience
+- **Magnetic Video Cards** that respond to mouse movement
+- **Animated SVG Borders** with gradient flows on hover
+- **Text Scramble Effect** on section titles
+- **3D Text Cycling** for dynamic storytelling
 
-### Motion & Animation
+### 🎬 Motion & Animation
+
 - **GSAP ScrollTrigger** animations throughout
 - **Staggered Entry Animations** for portfolio cards
-- **Text Scramble Effect** on section titles
-- **Animated Letter Entry** for hero title
-- **Enhanced Text Cycling** with 3D effects
 - **Parallax Backgrounds** for depth
 - **Scroll Progress Indicator** at top of page
 
-### Content Sections
-- **Hero Section** with animated introduction
-- **Portfolio Grid** (6 YouTube video embeds)
-- **In Motion** section (looping GIFs)
-- **Frankenstein Finder** tool showcase
-- **Contact Section** with email and LinkedIn
-
 ### 📱 Mobile Optimized
+
 - Fully responsive design
 - Heavy features disabled on touch devices for performance
 - Touch-friendly interactions
@@ -50,6 +46,7 @@ A premium, interactive portfolio website showcasing motion design work with adva
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/joshfadero-cpu/portfolio-site.git
    cd portfolio-site
@@ -64,9 +61,10 @@ A premium, interactive portfolio website showcasing motion design work with adva
 ### Deployment to GitHub Pages
 
 1. **Push to GitHub**
+
    ```bash
    git add .
-   git commit -m "Initial portfolio site"
+   git commit -m "Update portfolio theme"
    git push origin main
    ```
 
@@ -87,10 +85,10 @@ A premium, interactive portfolio website showcasing motion design work with adva
 - **Vanilla JavaScript (ES6+)** - Core functionality
 - **GSAP 3.12** - Animation library (via CDN)
 - **ScrollTrigger** - GSAP plugin for scroll animations
-- **Particles.js** - Floating particles system
-- **Vanilla-Tilt.js** - 3D tilt effects
+- **LottieFiles** - Lightweight JSON animations
 
 ### Why This Stack?
+
 - No build process needed
 - Edit files directly, push to GitHub
 - GitHub Pages compatible out-of-the-box
@@ -105,19 +103,20 @@ A premium, interactive portfolio website showcasing motion design work with adva
 portfolio-site/
 ├── index.html              # Main HTML file
 ├── css/
-│   └── style.css           # All styles (design system + enhancements)
+│   └── style.css           # All styles (Midnight Motion theme + responsive)
 ├── js/
 │   ├── main.js             # Core functionality (cursor, text cycling, lazy loading)
 │   ├── animations.js       # GSAP ScrollTrigger animations
-│   └── enhancements.js     # v2.0 enhancements (particles, tilt, scramble)
+│   └── enhancements.js     # v2.0 enhancements (borders, scramble, magnetic)
 ├── assets/
 │   ├── images/
 │   │   └── Frankenstein Finder 3 🧩.png
-│   └── loops/
-│       ├── loop-1.webp
-│       ├── loop-2.webp
-│       ├── loop-3.webp
-│       └── loop-4.webp
+│   ├── loops/
+│   │   ├── loop-1.webp
+│   │   └── ...
+│   └── lottie animations/
+│       ├── Developer at work.json
+│       └── Cat playing animation.json
 └── README.md               # This file
 ```
 
@@ -128,112 +127,28 @@ portfolio-site/
 ### Update Content
 
 **Hero Section** (`index.html`):
+
 - Edit hero title, subtitle, and description
 - Modify text cycling words in `js/main.js`
 
 **Portfolio Videos** (`index.html`):
+
 - Replace YouTube video IDs in `data-src` attributes
 - Update video titles and descriptions
 - Modify categories
 
-**Contact Information** (`index.html`):
-- Update email and LinkedIn links in contact section
-
 ### Modify Colors
 
 Edit CSS custom properties in `css/style.css`:
+
 ```css
 :root {
-    --accent-primary: #9333ea;  /* Main purple */
-    --accent-hover: #a855f7;    /* Hover purple */
-    --bg-primary: #0a0a0a;       /* Background */
-    /* ... more colors */
+  --bg-primary: #000000; /* Background */
+  --accent-primary: #2563eb; /* Electric Blue */
+  --accent-secondary: #ec4899; /* Hot Pink */
+  /* ... more colors */
 }
 ```
-
-### Adjust Animations
-
-**Cursor Speed** (`js/main.js`):
-```javascript
-cursorX += (mouseX - cursorX) * 0.4; // Increase for faster, decrease for slower
-```
-
-**Text Cycle Speed** (`js/main.js`):
-```javascript
-setInterval(cycleText, 3000); // Change 3000ms to adjust interval
-```
-
-**Particle Count** (`js/enhancements.js`):
-```javascript
-const particleCount = isMobile ? 25 : 50; // Adjust numbers
-```
-
----
-
-## Testing
-
-### Browser Compatibility
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-### Performance Testing
-1. Run **Lighthouse** audit (Chrome DevTools)
-2. Target scores:
-   - Performance: 85+
-   - Accessibility: 95+
-   - Best Practices: 100
-   - SEO: 100
-
-### Mobile Testing
-- Test on actual devices (not just DevTools)
-- Verify heavy features are disabled on touch devices
-- Check touch target sizes (min 44px)
-
----
-
-## Notes
-
-### Performance Optimizations
-- Lazy loading for YouTube iframes
-- Particles disabled on mobile
-- Cursor trail disabled on touch devices
-- Reduced motion support for accessibility
-- Optimized animations using `requestAnimationFrame`
-
-### Mobile Considerations
-- Custom cursor: Disabled on touch devices
-- Particles: Reduced count or disabled
-- Tilt effects: Disabled on mobile
-- Mouse glow: Disabled on mobile
-
-### Accessibility
-- Respects `prefers-reduced-motion`
-- Semantic HTML structure
-- Proper alt text on images
-- Keyboard navigation support
-
----
-
-## Contributing
-
-This is a personal portfolio project, but suggestions and feedback are welcome!
-
----
-
-## License
-
-© 2026 Josh Fadero. All rights reserved.
-
----
-
-## Acknowledgments
-
-- **GSAP** - Powerful animation library
-- **Particles.js** - Beautiful particle effects
-- **Vanilla-Tilt.js** - Smooth 3D tilt effects
-- **Google Fonts** - Inter & Space Grotesk typefaces
 
 ---
 

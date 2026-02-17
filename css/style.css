@@ -18,44 +18,14 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
-    /* Hide default cursor for custom cursor */
+    cursor: none; /* Hide default cursor for custom cursor */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     position: relative;
 }
 
-/* Atmospheric Background System */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle at 20% 50%, var(--bg-mesh-purple) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, var(--bg-mesh-blue) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, var(--bg-mesh-pink) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -2;
-    animation: meshMove 20s ease-in-out infinite;
-}
-
-@keyframes meshMove {
-
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-        transform: translate(50px, -30px) scale(1.1);
-    }
-
-    66% {
-        transform: translate(-30px, 50px) scale(0.95);
-    }
-}
-
+/* Film Grain Texture Overlay */
 body::after {
     content: '';
     position: fixed;
@@ -63,7 +33,7 @@ body::after {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=');
     pointer-events: none;
     z-index: 9997;
-    opacity: 0.2;
+    opacity: 0.05;
 }
 
 /* Hide cursor on touch devices */
@@ -78,29 +48,34 @@ body::after {
    ============================================ */
 
 :root {
-    /* Colors */
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1a1a1a;
+    /* Colors — Midnight Motion: Pure Black + Electric Blue */
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
     --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent-primary: #9333ea;
-    --accent-hover: #a855f7;
-    --accent-glow: rgba(147, 51, 234, 0.3);
-    --border-color: #2a2a2a;
+    --text-secondary: #a3a3a3;
+    --accent-primary: #2563eb;
+    --accent-hover: #3b82f6;
+    --accent-secondary: #ec4899;
+    --accent-glow: rgba(37, 99, 235, 0.25);
+    --accent-gradient: linear-gradient(135deg, #2563eb, #ec4899);
+    --border-color: rgba(255, 255, 255, 0.08);
     --success: #10b981;
 
-    /* New atmospheric colors */
-    --bg-gradient-1: #0f0a1a;
-    --bg-gradient-2: #1a0a2e;
-    --bg-mesh-purple: rgba(147, 51, 234, 0.15);
-    --bg-mesh-blue: rgba(59, 130, 246, 0.1);
-    --bg-mesh-pink: rgba(168, 85, 247, 0.08);
-    --cursor-trail: rgba(147, 51, 234, 0.6);
-
+    /* Glass Surface */
+    --surface-glass: rgba(255, 255, 255, 0.03);
+    --surface-glass-hover: rgba(255, 255, 255, 0.06);
+    --surface-border: rgba(255, 255, 255, 0.1);
+    
+    /* Atmospheric colors (very subtle on black) */
+    --bg-mesh-blue: rgba(37, 99, 235, 0.04);
+    --bg-mesh-pink: rgba(236, 72, 153, 0.03);
+    --bg-mesh-cyan: rgba(6, 182, 212, 0.03);
+    --cursor-trail: rgba(37, 99, 235, 0.5);
+    
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-display: 'Space Grotesk', 'Inter', sans-serif;
-
+    
     /* Font Sizes (Fluid Typography) */
     --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
     --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
@@ -109,13 +84,13 @@ body::after {
     --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
     --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
     --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
-
+    
     /* Font Weights */
     --weight-normal: 400;
     --weight-medium: 500;
     --weight-semibold: 600;
     --weight-bold: 700;
-
+    
     /* Spacing */
     --space-xs: 0.5rem;
     --space-sm: 1rem;
@@ -124,16 +99,16 @@ body::after {
     --space-xl: 3rem;
     --space-2xl: 4rem;
     --space-3xl: 6rem;
-
+    
     /* Border Radius */
     --radius-sm: 0.5rem;
     --radius-md: 1rem;
     --radius-lg: 1.5rem;
     --radius-full: 9999px;
-
+    
     /* Container */
     --container-max: 1200px;
-
+    
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-base: 0.3s ease;
@@ -217,7 +192,6 @@ body::after {
 
 /* Hide cursor on touch devices */
 @media (hover: none) and (pointer: coarse) {
-
     #custom-cursor,
     #cursor-trail {
         display: none;
@@ -233,10 +207,10 @@ body::after {
     top: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-hover));
+    background: var(--accent-gradient);
     width: 0%;
     z-index: 9999;
-    box-shadow: 0 0 10px var(--accent-glow);
+    box-shadow: 0 0 15px var(--accent-glow);
     transition: width 0.1s ease-out;
 }
 
@@ -254,29 +228,7 @@ body::after {
     transform: translate(-50%, -50%);
     filter: blur(40px);
     mix-blend-mode: screen;
-    opacity: 0.5;
-}
-
-/* ============================================
-   PARTICLES CONTAINER
-   ============================================ */
-
-#particles-js {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-#hero #particles-js {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+    opacity: 0.4;
 }
 
 /* ============================================
@@ -292,6 +244,75 @@ body::after {
 section {
     padding: var(--space-3xl) 0;
     position: relative;
+    background-color: transparent;
+}
+
+/* ============================================
+   FLOATING MOTION SHAPES (Hero Decoration)
+   ============================================ */
+
+.hero-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-shape {
+    position: absolute;
+    opacity: 0.15;
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero-shape:nth-child(1) {
+    top: 15%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.hero-shape:nth-child(2) {
+    top: 25%;
+    right: 10%;
+    animation-delay: -2s;
+    animation-duration: 8s;
+}
+
+.hero-shape:nth-child(3) {
+    bottom: 20%;
+    left: 15%;
+    animation-delay: -4s;
+    animation-duration: 7s;
+}
+
+.hero-shape:nth-child(4) {
+    bottom: 30%;
+    right: 8%;
+    animation-delay: -1s;
+    animation-duration: 9s;
+}
+
+.hero-shape:nth-child(5) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(-3deg);
+    }
+    75% {
+        transform: translateY(-25px) rotate(2deg);
+    }
 }
 
 /* ============================================
@@ -306,24 +327,7 @@ section {
     position: relative;
     overflow: hidden;
     padding: var(--space-2xl) 0;
-    background: linear-gradient(135deg,
-            var(--bg-primary) 0%,
-            var(--bg-gradient-2) 50%,
-            var(--bg-primary) 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
+    background: #000000;
 }
 
 .hero-background {
@@ -332,7 +336,9 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+    background: 
+        radial-gradient(ellipse at 30% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
 }
@@ -382,22 +388,23 @@ section {
 
 .cta-button {
     display: inline-block;
-    padding: var(--space-md) var(--space-xl);
-    background-color: var(--accent-primary);
+    padding: var(--space-sm) var(--space-xl);
+    background: var(--accent-gradient);
     color: var(--text-primary);
     text-decoration: none;
     border-radius: var(--radius-full);
     font-weight: var(--weight-semibold);
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
+    letter-spacing: 0.05em;
     transition: all var(--transition-base);
     box-shadow: 0 4px 20px var(--accent-glow);
     opacity: 0;
+    border: none;
 }
 
 .cta-button:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 30px var(--accent-glow);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 40px rgba(37, 99, 235, 0.4);
 }
 
 /* ============================================
@@ -418,11 +425,11 @@ section {
 }
 
 /* ============================================
-   PORTFOLIO GRID
+   PORTFOLIO GRID — FROSTED GLASS CARDS
    ============================================ */
 
 #portfolio {
-    background-color: var(--bg-secondary);
+    background-color: transparent;
 }
 
 .portfolio-grid {
@@ -433,20 +440,25 @@ section {
 }
 
 .video-card {
-    background-color: var(--bg-primary);
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: all var(--transition-base);
     opacity: 0;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--surface-border);
     position: relative;
     transform-style: preserve-3d;
 }
 
 .video-card:hover {
+    background: var(--surface-glass-hover);
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px var(--accent-glow);
-    border-color: var(--accent-primary);
+    box-shadow: 
+        0 20px 60px rgba(37, 99, 235, 0.15),
+        0 0 0 1px rgba(37, 99, 235, 0.3);
+    border-color: rgba(37, 99, 235, 0.4);
 }
 
 .card-border {
@@ -460,7 +472,7 @@ section {
 }
 
 .card-border rect {
-    stroke-dasharray: 711;
+    stroke-dasharray: 400;
     stroke-dashoffset: 400;
     fill: none;
     stroke: url(#gradient);
@@ -476,15 +488,12 @@ section {
 }
 
 @keyframes drawBorder {
-    to {
-        stroke-dashoffset: 0;
-    }
+    to { stroke-dashoffset: 0; }
 }
 
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 aspect ratio */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
     background-color: #000;
@@ -521,20 +530,22 @@ section {
 .video-category {
     display: inline-block;
     padding: var(--space-xs) var(--space-md);
-    background-color: var(--bg-secondary);
+    background: rgba(37, 99, 235, 0.1);
     color: var(--accent-primary);
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
     font-weight: var(--weight-medium);
-    border: 1px solid var(--accent-primary);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 /* ============================================
-   LOOPS SECTION
+   LOOPS SECTION — CINEMA STYLE
    ============================================ */
 
 #loops {
-    background-color: var(--bg-primary);
+    background-color: transparent;
     overflow: hidden;
 }
 
@@ -551,8 +562,8 @@ section {
 
 .scroll-content .loop-item {
     flex-shrink: 0;
-    width: 711px;
-    height: 404px;
+    width: 400px;
+    height: 400px;
 }
 
 .scroll-content .loop-item img {
@@ -568,18 +579,34 @@ section {
     margin-top: var(--space-xl);
 }
 
+/* Cinema style: no borders, floating on black */
 .loop-item {
     border-radius: var(--radius-md);
     overflow: hidden;
     opacity: 0;
     transition: all var(--transition-base);
-    border: 1px solid var(--border-color);
+    border: none;
+    position: relative;
+}
+
+.loop-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-base);
 }
 
 .loop-item:hover {
     transform: scale(1.05);
-    filter: brightness(1.2);
-    border-color: var(--accent-primary);
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
+}
+
+.loop-item:hover::after {
+    opacity: 1;
 }
 
 .loop-item img {
@@ -587,13 +614,12 @@ section {
     height: auto;
     display: block;
     object-fit: cover;
-    transition: transform var(--transition-base);
-    aspect-ratio: 16 / 9;
-    /* Maintain 16:9 aspect ratio */
+    transition: transform var(--transition-base), filter var(--transition-base);
 }
 
 .loop-item:hover img {
     transform: scale(1.05);
+    filter: brightness(1.15) contrast(1.05);
 }
 
 /* ============================================
@@ -601,7 +627,7 @@ section {
    ============================================ */
 
 #frankenstein {
-    background-color: var(--bg-secondary);
+    background-color: transparent;
 }
 
 .tool-showcase {
@@ -610,18 +636,23 @@ section {
     gap: var(--space-2xl);
     align-items: center;
     opacity: 0;
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
 }
 
 .tool-image {
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    border: 1px solid var(--border-color);
     transition: all var(--transition-base);
 }
 
 .tool-image:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px var(--accent-glow);
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
 }
 
 .tool-image img {
@@ -675,20 +706,30 @@ section {
 .coming-soon-badge {
     display: inline-block;
     padding: var(--space-sm) var(--space-lg);
-    background-color: var(--accent-primary);
+    background: var(--accent-gradient);
     color: var(--text-primary);
     border-radius: var(--radius-full);
     font-size: var(--text-sm);
     font-weight: var(--weight-semibold);
-    box-shadow: 0 4px 20px var(--accent-glow);
+    box-shadow: 0 4px 25px var(--accent-glow);
 }
 
 /* ============================================
-   CONTACT SECTION
+   CONTACT SECTION — Glass Pill Buttons
    ============================================ */
 
 #contact {
-    background-color: var(--bg-primary);
+    background-color: transparent;
+    padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+#contact .section-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-md);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .contact-links {
@@ -700,40 +741,48 @@ section {
 }
 
 .contact-link {
-    display: inline-block;
-    padding: var(--space-md) var(--space-xl);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md) var(--space-2xl);
     font-size: var(--text-lg);
     font-weight: var(--weight-semibold);
     color: var(--text-primary);
     text-decoration: none;
-    border: 2px solid var(--accent-primary);
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--surface-border);
     border-radius: var(--radius-full);
     transition: all var(--transition-base);
     opacity: 0;
     position: relative;
     overflow: hidden;
+    min-width: 200px;
 }
 
 .contact-link::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: var(--accent-primary);
-    transition: left var(--transition-base);
+    inset: 0;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-base);
     z-index: -1;
+    border-radius: var(--radius-full);
 }
 
 .contact-link:hover::before {
-    left: 0;
+    opacity: 1;
 }
 
 .contact-link:hover {
     color: var(--text-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 30px var(--accent-glow);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 10px 40px rgba(37, 99, 235, 0.3),
+        0 0 80px rgba(37, 99, 235, 0.1);
+    border-color: transparent;
 }
 
 /* ============================================
@@ -741,7 +790,7 @@ section {
    ============================================ */
 
 footer {
-    background-color: var(--bg-secondary);
+    background-color: transparent;
     padding: var(--space-xl) 0;
     border-top: 1px solid var(--border-color);
 }
@@ -785,12 +834,12 @@ footer p {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--space-lg);
     }
-
+    
     .tool-showcase {
         grid-template-columns: 1fr;
         gap: var(--space-xl);
     }
-
+    
     .loops-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
@@ -802,121 +851,128 @@ footer p {
         --space-3xl: 4rem;
         --space-2xl: 3rem;
     }
-
+    
     section {
         padding: var(--space-2xl) 0;
     }
-
+    
     .container {
         padding: 0 var(--space-md);
     }
-
+    
     #hero {
         min-height: 90vh;
         padding: var(--space-xl) 0;
     }
-
+    
     .hero-title {
         font-size: var(--text-2xl);
         margin-bottom: var(--space-sm);
     }
-
+    
     .hero-subtitle {
         font-size: var(--text-lg);
         margin-bottom: var(--space-md);
     }
-
+    
     .hero-description {
         font-size: var(--text-sm);
         margin-bottom: var(--space-lg);
     }
-
+    
     .cta-button {
         padding: var(--space-md) var(--space-lg);
-        min-height: 44px;
-        /* Touch-friendly */
+        min-height: 44px; /* Touch-friendly */
         display: inline-flex;
         align-items: center;
         justify-content: center;
     }
-
+    
     .portfolio-grid {
         grid-template-columns: 1fr;
         gap: var(--space-lg);
     }
-
+    
     .video-card {
         border-radius: var(--radius-md);
     }
-
+    
     .video-info {
         padding: var(--space-md);
     }
-
+    
     .loops-grid {
         grid-template-columns: 1fr;
         gap: var(--space-md);
     }
-
+    
     .tool-showcase {
         gap: var(--space-lg);
+        padding: var(--space-md);
     }
-
+    
     .tool-content {
         padding: var(--space-md);
     }
-
+    
     .tool-title {
         font-size: var(--text-xl);
         margin-bottom: var(--space-md);
     }
-
+    
     .tool-description {
         font-size: var(--text-sm);
         margin-bottom: var(--space-md);
     }
-
+    
     .tool-features li {
         font-size: var(--text-sm);
         padding: var(--space-xs) 0;
         padding-left: var(--space-md);
     }
-
+    
     .contact-links {
         flex-direction: column;
         align-items: stretch;
         gap: var(--space-md);
     }
-
+    
     .contact-link {
         padding: var(--space-md) var(--space-lg);
-        min-height: 44px;
-        /* Touch-friendly */
+        min-height: 44px; /* Touch-friendly */
         text-align: center;
         font-size: var(--text-base);
+        min-width: unset;
     }
-
+    
     footer .container {
         flex-direction: column;
         text-align: center;
     }
-
+    
     .footer-links {
         flex-direction: column;
         gap: var(--space-sm);
     }
-
+    
     .footer-link {
-        min-height: 44px;
-        /* Touch-friendly */
+        min-height: 44px; /* Touch-friendly */
         display: inline-flex;
         align-items: center;
         justify-content: center;
     }
-
+    
     .section-title {
         font-size: var(--text-xl);
         margin-bottom: var(--space-xl);
+    }
+
+    #contact .section-title {
+        font-size: var(--text-2xl);
+    }
+
+    .hero-shape {
+        display: none;
     }
 }
 
@@ -925,4 +981,53 @@ footer p {
     :root {
         --container-max: 1400px;
     }
+}
+
+/* ============================================
+   LOTTIE ANIMATIONS
+   ============================================ */
+
+.hero-lottie {
+    margin: var(--space-md) auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-lottie {
+    margin: 0 auto var(--space-md);
+    display: flex;
+    justify-content: center;
+}
+
+/* ============================================
+   AESCRIPTS BUTTON
+   ============================================ */
+
+.aescripts-button {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    background: transparent;
+    color: var(--accent-primary);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-sm);
+    border: 1px solid var(--accent-primary);
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.aescripts-button:hover {
+    background: var(--accent-primary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+/* Tablet/Desktop adjustments for Hero Lottie */
+@media (min-width: 1024px) {
 }
