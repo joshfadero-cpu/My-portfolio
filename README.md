@@ -2,7 +2,7 @@
 
 A premium, interactive portfolio website showcasing motion design work with a distinct "Midnight Motion" aesthetic. Features advanced scroll animations, custom interactions, and a cinematic "Pure Black + Glass" design that stands out to recruiters and potential clients.
 
-**Live Site:** [View Portfolio]((https://joshfadero-cpu.github.io/My-portfolio/))
+**Live Site:** [View Portfolio](https://joshfadero-cpu.github.io/My-portfolio/)
 
 ---
 
